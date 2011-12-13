@@ -4,7 +4,7 @@
 */
 
 $(document).ready(function() {
-	var socket = new io.connect('http://localhost');
+	var socket = new Socket();
 	
 	var log = $("#log ul"),
 		status = $("#status"),
