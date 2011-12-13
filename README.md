@@ -1,7 +1,7 @@
 Remote Commander
 ======
 
-Connect directly to a client and remotely control it via WebSockets
+Connect directly to a client and remotely control it, using Node.js and Socket.io
 
 Requirements
 ------------
