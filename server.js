@@ -1,5 +1,7 @@
 /*
-*
+* Remote Commander
+* @author Fabrizio Codello
+* @description Connect directly to a client and remotely control it, using Node.js and Socket.io
 *
 **/
 
