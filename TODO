@@ -2,3 +2,4 @@
 - check if req.params.remoteid exists
 - fix crashes when remote disconnect and commander tries to send message
 - send notification to connected commanders when remote disconnects
+- show how many Commander clients are connected (and who?)
