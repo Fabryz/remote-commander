@@ -42,7 +42,8 @@ console.log('* Server started at '+ app.address().address +':'+ app.address().po
 * Web Sockets
 */
 
-var io = require('socket.io').listen(app);
+var io = require('socket.io').listen(app),
+	remotes = [];
 	
 io.configure(function(){ 
 	io.enable('browser client minification');
@@ -67,7 +68,11 @@ io.sockets.on('connection', function(client) {
 		//console.dir(remote_id);
 		
 		io.sockets.sockets[remote_id].emit("join", { commander: client.id });
+		
+		console.log('# '+ client.id +' is now a Commander client');
 		console.log('* '+ client.id +' is controlling '+ remote_id);
+	} else {
+		console.log('# '+ client.id +' is now a Remote client');
 	}
 	
 	client.on("command", function(data) {		
