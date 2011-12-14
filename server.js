@@ -1,3 +1,8 @@
+/*
+*
+*
+**/
+
 var http = require('http'),
     express = require('express');
 
@@ -5,9 +10,8 @@ var http = require('http'),
 * HTTP Server
 */
 
-var app = express.createServer()
-	remote_id = '',
-	commander_id = '';
+var app = express.createServer(),
+	remote_id;
 
 app.use(express.logger(':remote-addr - :method :url HTTP/:http-version :status :res[content-length] - :response-time ms'));
 app.use(express.static(__dirname + '/public'));
@@ -23,15 +27,14 @@ app.get('/', function(req, res) {
 
 app.get('/rc/:remoteid', function(req, res) {
 	
-	// FIXME no actual checks if req.params.id is reliable
-	res.render('commander', { id: req.params.remoteid });
-	io.sockets.sockets[req.params.remoteid].emit("join");
+	remote_id = req.params.remoteid; // FIXME no actual checks if req.params.remoteid is reliable
+	
+	res.render('commander', { id: remote_id });
 });
-
 
 app.listen(8080);
 
-//console.log('Server started at '+ app.address().address +':'+ app.address().port +' with Node '+ process.version +', platform '+ process.platform +'.');
+console.log('* Server started at '+ app.address().address +':'+ app.address().port +' with Node '+ process.version +', platform '+ process.platform +'.');
 
 /*
 * Web Sockets
@@ -58,24 +61,28 @@ io.sockets.on('connection', function(client) {
 	console.log('+ '+ client.id +' has connected');
 	client.emit("nick", { nick: client.id });
 	
-	/* client.get('controlled_id', function (err, controlled_id) {
-		if (controlled_id != '') {
-			io.sockets.sockets[controlled_id].emit("controlled_id", { controlled_id: controlled_id });
-		}
-	}); */
+	if (typeof remote_id !== 'undefined') {
+		//console.dir(remote_id);
+		
+		io.sockets.sockets[remote_id].emit("join", { commander: client.id });
+		console.log('* '+ client.id +' is controlling '+ remote_id);
+	}
 	
 	client.on("command", function(data) {		
 		//console.dir(data);
+		
 		io.sockets.sockets[data.to].emit("execute", { msg: data.msg });
-		//console.log('>'+ client.id +' has sent '+ data.msg +' to '+ controlled_id);
+		console.log('> '+ client.id +' has sent "'+ data.msg +'" to '+ data.to);
 	});
 
 	client.on('disconnect', function() {
-		/* client.get('controlled_id', function (err, controlled_id) {
-			io.sockets.sockets[controlled_id].emit("quit");
-			console.log('- '+ client.id +' has stopped controlling '+ controlled_id);
-		}); */
-
+		
+		if (typeof remote_id !== 'undefined') {
+			console.log('* '+ client.id +' has stopped controlling '+ remote_id);
+			io.sockets.sockets[remote_id].emit("quit", { commander: client.id });
+		}
+		
+		console.log('- '+ client.id +' has disconnected');
 	});
 });
 
