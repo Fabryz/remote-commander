@@ -29,11 +29,11 @@ $(document).ready(function() {
 	});
 
 	socket.on('join', function(data) {
-    	status.html("Someone connected to RC");
+    	status.html(data.commander +" has connected to RC");
 	});
 	
 	socket.on('quit', function(data) {
-    	status.html("Someone quitted from RC");
+    	status.html(data.commander +" has quitted from RC");
 	});
 
 	// here you can trigger whatever you want, according to what is contained on data.msg
