@@ -1,0 +1,4 @@
+- store all connected clients somewhere, with who's connected to who
+- check if req.params.remoteid exists
+- fix crashes when remote disconnect and commander tries to send message
+- send notification to connected commanders when remote disconnects
