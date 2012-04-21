@@ -24,8 +24,9 @@ Installation
 2. Install dependencies with ``npm install``
 3. Start the server with ``node server.js``
 4. Point your Remote browser to ``YOUR_SERVER_IP:8080``, use your smartphone on the QRCode or just open the link in a new tab to control the Remote
-5. You can see a list of all the connected clients on ``YOUR_SERVER_IP:8080/rc/``
-6. Do wizardry
+5. Write something on the Commander's input and click the button to send it away, you will see it on the console.log in the Remote
+
+You can see a list of all the connected clients on ``YOUR_SERVER_IP:8080/rc/``
 
 I have used ``html2jade`` module do quickly convert html to jade templates:
 
