@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Commander</title>
+
+    <meta http-equiv="Content-type" content="text/html; charset=UTF-8" />
+
+    <link type="text/css" rel="stylesheet" href="../css/style.css" media="screen">
+
+    <script type="text/javascript" src="../js/jquery-1.7.2.min.js"></script>
+    <script type="text/javascript" src="../socket.io/socket.io.js"></script>
+
+    <script type="text/javascript" src="../js/Player.js"></script>
+    <script type="text/javascript" src="../js/commander.js"></script>
+</head>
+<body>
+	<div id="wrapper">
+		<h1>Commander (#{remoteId})</h1>
+		<input type="text" id="message" name="message" size="50" />
+		<input type="hidden" id="remoteId" name="remoteId" value="#{remoteId}" />
+		<div id="debug">
+			<div id="status"></div>
+			<div id="clientId"></div>
+			<div id="online">There are <span id="tot">0</span> users online.</div>
+		</div>
+	</div>
+</body>
+</html>

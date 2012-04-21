@@ -1,7 +1,7 @@
 Remote Commander
-======
+================
 
-Connect directly to a client and remotely control it, using Node.js and Socket.io
+Remotely connect and control a client, using Node.js and Socket.IO
 
 Requirements
 ------------
@@ -18,17 +18,21 @@ Modules:
 Installation
 ----------
 
-1. Clone the repository with ``git clone git://github.com/Fabryz/remote-commander.git remote-commander``
-2. Install dependencies with ``npm install -d``
-3. Start the server with ``node server.js`` or ``nodemon server.js`` if you have it
-4. Point your browser to ``YOUR_SERVER_IP:8080`` and copy the numeric id
-5. Point your (other?) browser to ``YOUR_SERVER_IP:8080/rc/<numeric_id>`` and send whatever you want to the first client
+1. Clone the repository with ``git clone git://github.com/Fabryz/remote-commander.git``
+2. Install dependencies with ``npm install``
+3. Start the server with ``node server.js``
+4. Point your Remote browser to ``YOUR_SERVER_IP:8080``, use your smartphone on the QRCode or just open the link in a new tab to control the Remote
+5. You can see a list of all the connected clients on ``YOUR_SERVER_IP:8080/rc/``
 6. Do wizardry
+
+I have used ``html2jade`` module do quickly convert html to jade templates:
+1. Install it with ``[sudo] npm install -g html2jade``
+2. Use ``html2jade views/*.html`` to convert stuff
 
 License
 -------
 
-Copyright (C) 2011 Fabrizio Codello
+Copyright (C) 2012 Fabrizio Codello
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by

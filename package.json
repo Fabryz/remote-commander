@@ -1,11 +1,14 @@
 {
-    "name": "remote-commander"
-  , "version": "0.0.2"
-  , "author" : "Fabrizio Codello"
-  , "private": true
-  , "dependencies": {
-      "express": ">=2.5.2"
-    , "jade": ">=0.0.1"
-    , "socket.io" : ">=0.8.4"
+  "name": "remote-commander",
+  "version": "0.1.0",
+  "author": "Fabrizio Codello",
+  "engines": {
+    "node": "0.6.x"
+  },
+  "private": true,
+  "dependencies": {
+    "express": "2.5.x",
+    "socket.io": "0.9.x",
+    "jade": "0.24.x"
   }
 }

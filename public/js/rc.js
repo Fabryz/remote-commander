@@ -8,6 +8,23 @@ $(document).ready(function() {
 		console.log(new Date().toJSON() +": "+ msg);
 	}
 
+	function appendPlayerList(id, nick) {
+
+		var newLi = $("<li/>").append($("<a/>", {
+			"class": "nick",
+			"href": connectURL +"/rc/"+ id,
+			"target": "_blank",
+			"title": "Control: "+ nick,
+			"data-id": id
+		}).html(nick));
+
+		playerList.append(newLi);
+	}
+
+	function removePlayerList(id) {
+		playerList.find("[data-id='" + id +"']").parent().remove();
+	}
+
 	function toggleDebug(spd) {
 		var speed = spd || 'fast';
 	
@@ -28,15 +45,6 @@ $(document).ready(function() {
 				toggleDebug();
 			}
 		});
-
-		message.focus();
-	
-		message.keydown(function(e) {
-			if (e.keyCode === 13) { // enter
-				socket.emit("command", { msg: message.val(), from: player.id, to: remoteId.val() });
-				message.val('');
-			}
-		});
 	}
 
 	/*
@@ -55,8 +63,7 @@ $(document).ready(function() {
 		tot = $("#tot"),
 		debug = $("#debug");
 
-	var message = $("#message"),
-		remoteId = $("#remoteId");
+	var playerList = $("#playerlist ul");
 
 	var player = new Player(),
 		players = [];
@@ -86,6 +93,7 @@ $(document).ready(function() {
 		player = jQuery.extend(true, {}, data.player);
 
 		clientId.html(data.player.id);
+		appendPlayerList(player.id, player.nick);
 
 		log('You have joined the server. (id: '+ data.player.id +').');
 	});
@@ -97,6 +105,7 @@ $(document).ready(function() {
 		for(var i = 0; i < length; i++) {
 			if (players[i].id == data.id) {
 				quitter = players[i].nick;
+				removePlayerList(players[i].id);
 				players.splice(i, 1);
 				break;
 			}
@@ -109,6 +118,8 @@ $(document).ready(function() {
 		var newPlayer = new Player();
 		newPlayer = jQuery.extend(true, {}, data.player);
 		players.push(newPlayer);
+
+		appendPlayerList(newPlayer.id, newPlayer.nick);
 
 		log('> New player joined: '+ newPlayer.nick +' (id: '+ newPlayer.id +').');
 		
@@ -123,6 +134,10 @@ $(document).ready(function() {
 			var tmpPlayer = new Player();
 			tmpPlayer = jQuery.extend(true, {}, data.list[i]);
 			players.push(tmpPlayer);
+
+			if (tmpPlayer.id != player.id) {
+				appendPlayerList(tmpPlayer.id, tmpPlayer.nick);
+			}
 
 			tmpPlayer = {};
 		}

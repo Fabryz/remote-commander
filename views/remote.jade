@@ -1,22 +1,23 @@
 !!! 5
 html
-	head
-		meta(http-equiv='Content-type', content='text/html; charset=UTF-8')
-		title="Remote"
-
-		link(type='text/css', rel='stylesheet', href='../css/style.css', media='screen')	
-
-		script(type='text/javascript', src='../js/jquery-1.7.2.min.js')
-		script(type='text/javascript', src='../socket.io/socket.io.js')
-		script(type='text/javascript', src='../js/Socket.js')
-		script(type='text/javascript', src='../js/remote.js')
-	body
-		#wrapper
-			h1 Remote
-			.block Connection status:
-				#status
-			.block You are:
-				#nick Unknown
-			.block Incoming messages:
-				#log
-					ul
+  head
+    title Remote
+    meta(http-equiv='Content-type', content='text/html; charset=UTF-8')
+    link(type='text/css', rel='stylesheet', href='./css/style.css', media='screen')
+    script(type='text/javascript', src='./js/jquery-1.7.2.min.js')
+    script(type='text/javascript', src='./socket.io/socket.io.js')
+    script(type='text/javascript', src='./js/Player.js')
+    script(type='text/javascript', src='./js/remote.js')
+  body
+    #wrapper
+      h1 Remote
+      #qrcode
+        a(href='', title='')
+          img(src='', alt='qrcode')
+      #debug
+        #status
+        #clientId
+        #online
+          | There are
+          span#tot 0
+          | users online.

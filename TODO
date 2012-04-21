@@ -1,6 +1,0 @@
-- store all connected clients somewhere, with who's connected to who
-- check if req.params.remoteid exists
-- fix crashes when remote disconnect and commander tries to send message
-- send notification to connected commanders when remote disconnects
-- show how many Commander clients are connected (and who?)
-- send feedback to the Commander if the command has been received by the Remote
