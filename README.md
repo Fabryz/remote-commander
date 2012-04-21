@@ -3,6 +3,8 @@ Remote Commander
 
 Remotely connect and control a client, using Node.js and Socket.IO
 
+Demo [http://remote-commander.nodejitsu.com](http://remote-commander.nodejitsu.com/)
+
 Requirements
 ------------
 
@@ -26,6 +28,7 @@ Installation
 6. Do wizardry
 
 I have used ``html2jade`` module do quickly convert html to jade templates:
+
 1. Install it with ``[sudo] npm install -g html2jade``
 2. Use ``html2jade views/*.html`` to convert stuff
 
